@@ -9,7 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+
+import javax.print.attribute.standard.MediaSize.NA;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -27,16 +32,22 @@ public class RegisterController implements Initializable {
     private final Connection con;
 
     @FXML
-    private TextField firstName;
+    private TextField Names;
 
     @FXML
-    private TextField lastName;
+    private TextField ApellidoA;
+
+    @FXML
+    private TextField ApellidoB;
+
+    @FXML
+    private TextField username;
 
     @FXML
     private TextField email;
 
     @FXML
-    private TextField username;
+    private TextField Tel;
 
     @FXML
     private TextField password;
@@ -58,6 +69,13 @@ public class RegisterController implements Initializable {
         DbConnection dbc = DbConnection.getDatabaseConnection();
         con = dbc.getConnection();
     }
+     public static String AbogaID() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String formattedDateTime = now.format(formatter);
+        String AbogaID = formattedDateTime;
+        return AbogaID;
+    }
 
     @FXML
     private void register() {
@@ -67,13 +85,17 @@ public class RegisterController implements Initializable {
             try {
                 PreparedStatement ps;
                 stmt = con.createStatement();
-                String query = "insert into users (first_name,last_name,email,user_name,password)values (?,?,?,?,?)";
+                String query = "insert into ABOGADOS (ABOGADID,NOMBRES,APELLIDOA,APELLIDOB,TELEFONO,EMAIL,USERNAME,PASSWORD)values (?,?,?,?,?,?,?,?)";
                 ps = con.prepareStatement(query);
-                ps.setString(1, firstName.getText());
-                ps.setString(2, lastName.getText());
-                ps.setString(3, email.getText());
-                ps.setString(4, username.getText());
-                ps.setString(5, password.getText());
+                ps.setString(1, AbogaID());
+                ps.setString(2, Names.getText());
+                ps.setString(3, ApellidoA.getText());
+                ps.setString(4, ApellidoB.getText());
+                ps.setString(5, Tel.getText());
+                ps.setString(6, email.getText());
+                ps.setString(7, username.getText());
+                ps.setString(8, password.getText());
+
                 if (ps.executeUpdate() > 0) {
                     this.clearForm();
                     AlertHelper.showAlert(Alert.AlertType.INFORMATION, window, "Information",
@@ -95,7 +117,7 @@ public class RegisterController implements Initializable {
         ResultSet rs;
         boolean usernameExist = false;
 
-        String query = "select * from users WHERE user_name = ?";
+        String query = "select * from ABOGADOS WHERE USERNAME = ?";
         try {
             ps = con.prepareStatement(query);
             ps.setString(1, username.getText());
@@ -112,33 +134,49 @@ public class RegisterController implements Initializable {
     private boolean isValidated() {
 
         window = registerButton.getScene().getWindow();
-        if (firstName.getText().equals("")) {
+        if (Names.getText().equals("")) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                    "El nombre no puede estar en blanco.");
-            firstName.requestFocus();
-        } else if (firstName.getText().length() < 2 || firstName.getText().length() > 25) {
+                    "Nombres no puede estar en blanco.");
+            Names.requestFocus();
+        } else if (Names.getText().length() < 2 || Names.getText().length() > 80) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                    "El nombre no puede ser menor a 2 caracteres ni mayor a 25.");
-            firstName.requestFocus();
-        } else if (lastName.getText().equals("")) {
+                    "Los nombres no pueden ser menor a 2 caracteres ni mayor a 80.");
+            Names.requestFocus();
+        } else if (ApellidoA.getText().equals("")) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                    "El apellido no puede estar en blanco.");
-            lastName.requestFocus();
-        } else if (lastName.getText().length() < 2 || lastName.getText().length() > 25) {
+                    "Primer apellido no puede estar en blanco.");
+            ApellidoA.requestFocus();
+        } else if (ApellidoA.getText().length() < 2 || ApellidoA.getText().length() > 30) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                    "El apellido no puede ser menor a 2 caracteres, ni mayor a 25.");
-            lastName.requestFocus();
+                    "El Primer apellido no puede ser menor a 2 caracteres, ni mayor a 30.");
+            ApellidoA.requestFocus();
+        }  else if (ApellidoB.getText().equals("")) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                    "Segundo apellido no puede estar en blanco.");
+            ApellidoB.requestFocus();
+        } else if (ApellidoB.getText().length() < 2 || ApellidoB.getText().length() > 30) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                    "El Segundo apellido no puede ser menor a 2 caracteres, ni mayor a 30.");
+            ApellidoB.requestFocus();
+        } else if (Tel.getText().equals("")) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                    "Telefono no puede estar en blanco.");
+            Tel.requestFocus();
+        } else if (Tel.getText().length() < 5 || Tel.getText().length() > 10) {
+            AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
+                    "El Telefono no puede ser menor a 5 caracteres, ni mayor a 45.");
+            Tel.requestFocus();
         } else if (email.getText().equals("")) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                    "El Email no puede estar en blanco.");
+                    "Email no puede estar en blanco.");
             email.requestFocus();
-        } else if (email.getText().length() < 5 || email.getText().length() > 45) {
+        } else if (email.getText().length() < 5 || email.getText().length() > 80) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                    "El email no puede ser menor a 5 caracteres, ni mayor a 45.");
+                    "El email no puede ser menor a 5 caracteres, ni mayor a 80.");
             email.requestFocus();
         } else if (username.getText().equals("")) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                    "El nombre de usuario no puede estar en blanco.");
+                    "Nombre de usuario no puede estar en blanco.");
             username.requestFocus();
         } else if (username.getText().length() < 5 || username.getText().length() > 25) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
@@ -146,7 +184,7 @@ public class RegisterController implements Initializable {
             username.requestFocus();
         } else if (password.getText().equals("")) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                    "La contraseña no puede estar en blanco.");
+                    "Contraseña no puede estar en blanco.");
             password.requestFocus();
         } else if (password.getText().length() < 5 || password.getText().length() > 25) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
@@ -154,7 +192,7 @@ public class RegisterController implements Initializable {
             password.requestFocus();
         } else if (confirmPassword.getText().equals("")) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
-                    "El confirmar contraseña no puede estar en blanco.");
+                    "Confirmar contraseña no puede estar en blanco.");
             confirmPassword.requestFocus();
         } else if (confirmPassword.getText().length() < 5 || password.getText().length() > 25) {
             AlertHelper.showAlert(Alert.AlertType.ERROR, window, "Error",
@@ -175,8 +213,10 @@ public class RegisterController implements Initializable {
     }
 
     private boolean clearForm() {
-        firstName.clear();
-        lastName.clear();
+        Names.clear();
+        ApellidoA.clear();
+        ApellidoB.clear();
+        Tel.clear();
         email.clear();
         username.clear();
         password.clear();

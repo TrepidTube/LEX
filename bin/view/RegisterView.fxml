@@ -21,12 +21,10 @@
                   <Font name="Wingdings 3" size="27.0" />
                </font>
             </Text>
-            <TextField fx:id="firstName" layoutX="52.0" layoutY="138.0" prefHeight="25.0" prefWidth="202.0" promptText="Nombre" style="-fx-background-color: transparent; -fx-border-color: #0073CC; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField fx:id="lastName" layoutX="293.0" layoutY="138.0" prefHeight="25.0" prefWidth="202.0" promptText="Apellido" style="-fx-background-color: transparent; -fx-border-color: #0073CC; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField fx:id="email" layoutX="293.0" layoutY="176.0" prefHeight="25.0" prefWidth="202.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: #0073CC; -fx-border-width: 0px 0px 2px 0px;" />
-            <TextField fx:id="username" layoutX="52.0" layoutY="176.0" prefHeight="25.0" prefWidth="202.0" promptText="Usuario" style="-fx-background-color: transparent; -fx-border-color: #0073CC; -fx-border-width: 0px 0px 2px 0px;" />
-            <PasswordField fx:id="password" layoutX="52.0" layoutY="211.0" prefHeight="25.0" prefWidth="202.0" promptText="Contraseña" style="-fx-background-color: transparent; -fx-border-color: #0073CC; -fx-border-width: 0px 0px 2px 0px;" />
-            <PasswordField fx:id="confirmPassword" layoutX="293.0" layoutY="211.0" prefHeight="25.0" prefWidth="202.0" promptText="Confirmar contraseña" style="-fx-background-color: transparent; -fx-border-color: #0073CC; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="Names" layoutX="52.0" layoutY="116.0" prefHeight="25.0" prefWidth="202.0" promptText="Nombres" style="-fx-background-color: transparent; -fx-border-color: #0073CC; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="ApellidoA" layoutX="293.0" layoutY="116.0" prefHeight="25.0" prefWidth="202.0" promptText="Pirimer apellido" style="-fx-background-color: transparent; -fx-border-color: #0073CC; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="email" layoutX="293.0" layoutY="154.0" prefHeight="25.0" prefWidth="202.0" promptText="Email" style="-fx-background-color: transparent; -fx-border-color: #0073CC; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="ApellidoB" layoutX="52.0" layoutY="154.0" prefHeight="25.0" prefWidth="202.0" promptText="Segundo Apellido" style="-fx-background-color: transparent; -fx-border-color: #0073CC; -fx-border-width: 0px 0px 2px 0px;" />
             <Button fx:id="registerButton" layoutX="161.0" layoutY="299.0" mnemonicParsing="false" onAction="#register" prefHeight="32.0" prefWidth="225.0" style="-fx-background-color: #0073CC; -fx-background-radius: 0px;" text="Registrar" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
@@ -36,6 +34,10 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Text>
+            <PasswordField fx:id="password" layoutX="52.0" layoutY="238.0" prefHeight="25.0" prefWidth="202.0" promptText="Contraseña" style="-fx-background-color: transparent; -fx-border-color: #0073CC; -fx-border-width: 0px 0px 2px 0px;" />
+            <PasswordField fx:id="confirmPassword" layoutX="293.0" layoutY="238.0" prefHeight="25.0" prefWidth="202.0" promptText="Confirmar contraseña" style="-fx-background-color: transparent; -fx-border-color: #0073CC; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="Tel" layoutX="293.0" layoutY="200.0" prefHeight="25.0" prefWidth="202.0" promptText="Numero de telefono" style="-fx-background-color: transparent; -fx-border-color: #0073CC; -fx-border-width: 0px 0px 2px 0px;" />
+            <TextField fx:id="username" layoutX="52.0" layoutY="200.0" prefHeight="25.0" prefWidth="202.0" promptText="Nombre de usuario" style="-fx-background-color: transparent; -fx-border-color: #0073CC; -fx-border-width: 0px 0px 2px 0px;" />
          </children>
       </AnchorPane>
    </center>

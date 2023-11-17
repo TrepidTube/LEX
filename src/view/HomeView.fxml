@@ -8,7 +8,7 @@
    <children>
       <ImageView fitHeight="414.0" fitWidth="722.0" layoutX="239.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Downloads/LEX%20IMG/LEX%20LOGO.jpeg" />
+            <Image url="@../asset/LEX%20LOGO.jpeg" />
          </image>
       </ImageView>
    </children>

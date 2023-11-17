@@ -55,7 +55,7 @@ public class LoginController implements Initializable {
             PreparedStatement ps;
             ResultSet rs;
 
-            String query = "select * from users WHERE user_name = ? and password = ?";
+            String query = "select * from ABOGADOS WHERE USERNAME = ? and PASSWORD = ?";
             try {
                 ps = con.prepareStatement(query);
                 ps.setString(1, username.getText());

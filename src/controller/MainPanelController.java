@@ -18,6 +18,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainPanelController implements Initializable {
@@ -93,64 +94,33 @@ public class MainPanelController implements Initializable {
         stage.getIcons().add(new Image("/asset/icon.png"));
         stage.show();
     }
+    @FXML
+    private void AddEvent() throws IOException{
+        try {
+                    FXMLLoader loadPopup = new FXMLLoader(getClass().getResource("/view/EventView.fxml"));
+                    Parent rt = loadPopup.load();
+                    EventController controller = loadPopup.getController();
+                    Scene sc = new Scene(rt);
+                    Stage st = new Stage();
+                    st.initModality(Modality.APPLICATION_MODAL);
+                    st.setScene(sc);
+                    st.setTitle("Agendar caso");
+                    st.getIcons().add(new Image("/asset/icon.png"));
+                    st.showAndWait();
+                } catch (IOException e) {        
+                    e.printStackTrace();
+                }
+    }
 
     @FXML
-    private void loadPage01View(ActionEvent e) {
-        loadFXML("Page01View");
+    private void loadJournalView(ActionEvent e) {
+        loadFXML("JournalView");
         changeButtonBackground(e);
     }
 
     @FXML
     private void loadPage02View(ActionEvent e) {
         loadFXML("Page02View");
-        changeButtonBackground(e);
-    }
-
-    @FXML
-    private void loadPage03View(ActionEvent e) {
-        loadFXML("Page03View");
-        changeButtonBackground(e);
-    }
-
-    @FXML
-    private void loadPage04View(ActionEvent e) {
-        loadFXML("Page04View");
-        changeButtonBackground(e);
-    }
-
-    @FXML
-    private void loadPage05View(ActionEvent e) {
-        loadFXML("Page05View");
-        changeButtonBackground(e);
-    }
-
-    @FXML
-    private void loadPage06View(ActionEvent e) {
-        loadFXML("Page06View");
-        changeButtonBackground(e);
-    }
-
-    @FXML
-    private void loadPage07View(ActionEvent e) {
-        loadFXML("Page07View");
-        changeButtonBackground(e);
-    }
-
-    @FXML
-    private void loadPage08View(ActionEvent e) {
-        loadFXML("Page08View");
-        changeButtonBackground(e);
-    }
-
-    @FXML
-    private void loadPage09View(ActionEvent e) {
-        loadFXML("Page09View");
-        changeButtonBackground(e);
-    }
-
-    @FXML
-    private void loadPage10View(ActionEvent e) {
-        loadFXML("Page10View");
         changeButtonBackground(e);
     }
 
